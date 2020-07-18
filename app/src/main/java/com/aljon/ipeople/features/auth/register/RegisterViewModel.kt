@@ -13,9 +13,6 @@ class RegisterViewModel @Inject constructor(
     private val repository: AuthRepository,
     private val app: Application
 ) : BaseViewModel() {
-
-    private lateinit var email: String
-
     private val _state by lazy {
         PublishSubject.create<RegisterState>()
     }
@@ -24,12 +21,12 @@ class RegisterViewModel @Inject constructor(
 
     override fun isFirstTimeUiCreate(bundle: Bundle?) {}
 
-    fun register(password: String, mobileNumber: String) {
+    fun register(email: String, password: String, name: String, country: String) {
         disposables.add(repository.register(
             email = email,
             password = password,
-            name = "",
-            country = "")
+            name = name,
+            country = country)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .doOnSubscribe {
@@ -41,11 +38,11 @@ class RegisterViewModel @Inject constructor(
             .doOnError {
                 _state.onNext(RegisterState.HideProgressLoading)
             }
-            .subscribeBy(onSuccess = { user ->
-
-                if (user.id.orEmpty().isNotEmpty()) {
-                    _state.onNext(RegisterState.SaveLoginCredentials(user))
-                }
+            .subscribeBy(
+                onSuccess = { session ->
+                    if (session.id.orEmpty().isNotEmpty()) {
+                        _state.onNext(RegisterState.RegisterSuccessful)
+                    }
             }, onError = {
                 _state.onNext(RegisterState.Error(it))
             })

@@ -1,5 +1,6 @@
 <resources>
     <string name="register">Register</string>
+    <string name="name">Name</string>
     <string name="full_name">Full name</string>
     <string name="password_must_contain_minimum_characters">Your password must contain 8 characters</string>
     <string name="password">Password</string>
