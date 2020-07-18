@@ -1,0 +1,5 @@
+include ':app', ':domain'
+include ':local'
+include ':network'
+include ':common'
+include ':data'

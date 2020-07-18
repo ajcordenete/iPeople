@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: '../ktlint.gradle'
+
+android {
+    compileSdkVersion Android.compileSdkVersion
+    buildToolsVersion Android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion Android.minSdkVersion
+        targetSdkVersion Android.targetSdkVersion
+
+        versionCode Android.versionCode
+        versionName Android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+check.dependsOn(ktlint)
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':network')
+    api project(':local')
+    api project(':common')
+    api project(':domain')
+
+    // ViewModel & LiveData
+    api Libs.archExtensions
+    kapt Libs.archExtensionsCompiler
+
+    // Core-KTX
+    api Libs.coreKTX
+
+    // Dagger
+    api Libs.dagger
+    api Libs.daggerAndroid
+    api Libs.daggerSupport
+    kapt Libs.daggerProcessor
+    kapt Libs.daggerCompiler
+
+    // GlassFish
+    compileOnly Libs.glassFishAnnotation
+
+    // RxPermissions
+    api Libs.runtimePermission
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

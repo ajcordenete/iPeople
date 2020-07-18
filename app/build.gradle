@@ -1,0 +1,134 @@
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
+apply from: '../ktlint.gradle'
+apply from: '../secret.gradle'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+// https://kotlinlang.org/docs/tutorials/android-plugin.html
+androidExtensions {
+    experimental = true
+}
+kapt {
+    correctErrorTypes = true
+}
+android {
+    dataBinding {
+        enabled = true
+    }
+
+    compileSdkVersion Android.compileSdkVersion
+    defaultConfig {
+        applicationId "com.aljon.ipeople"
+        minSdkVersion Android.minSdkVersion
+        targetSdkVersion Android.targetSdkVersion
+
+        versionCode Android.versionCode
+        versionName Android.versionName
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(secretDebug.fileName)
+            storePassword secretDebug.storePassword
+
+            keyAlias secretDebug.keyAlias
+            keyPassword secretDebug.keyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+            releaseApi.each { key, value ->
+                buildConfigField 'String', key, "\"" + value + "\""
+            }
+        }
+
+        debug {
+            debuggable true
+            stagingApi.each { key, value ->
+                buildConfigField 'String', key, "\"" + value + "\""
+            }
+        }
+    }
+
+    flavorDimensions 'env'
+
+    productFlavors {
+
+        internal {
+            dimension 'env'
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+
+            signingConfig signingConfigs.debug
+        }
+
+        production {
+            dimension 'env'
+            // signingConfig signingConfigs.production
+        }
+
+    }
+
+    variantFilter { variant ->
+        // for internal debug and staging
+        if ((variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'internal')) {
+            variant.setIgnore(true)
+        }
+
+        if (variant.buildType.name == 'debug' && variant.getFlavors().get(0).name == 'production') {
+            variant.setIgnore(true)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        disable 'RestrictedApi'
+    }
+}
+
+check.dependsOn(applyToIDEAProject, ktlint)
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation project(':data')
+
+    kapt Libs.daggerCompiler
+    kapt Libs.daggerProcessor
+
+    implementation Libs.glide
+    kapt Libs.glideCompiler
+
+    // Stetho
+    implementation Libs.stetho
+
+    // Crashlytics
+    implementation Libs.crashlytics
+
+    // Testing
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockito
+    testImplementation TestLibs.archCoreTesting
+    androidTestImplementation TestLibs.testRunner
+    androidTestImplementation TestLibs.espresso
+}

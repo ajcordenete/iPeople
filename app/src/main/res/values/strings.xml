@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="application_name">Ipeople</string>
+
+    <string name="app_description">Appetiser makes some pretty snazzy apps that’ll make you hungry</string>
+    <string name="verify_number">Verify Number</string>
+    <string name="verify_number_desc">You need to verify number blah blah blah</string>
+    <string name="mobile">Mobile</string>
+    <string name="start_with_basic">Start with basic</string>
+    <string name="for_the_best">For the best</string>
+    <string name="whats_your_email">What\'s your email</string>
+    <string name="whats_your_email_desc">Whay\'s your email</string>
+    <string name="enter_your_credentials">Enter your credentials to continue</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="continue_string">Continue</string>
+    <string name="forgot_password_description">For your security, we need to verify your phone number</string>
+    <string name="verification_code_description">Email sent to %s. Check your inbox for the verification code and enter it below.</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="no_verification_code">Didn’t receive a code?</string>
+    <string name="new_password">New Password</string>
+    <string name="new_password_description">Enter your new password below.</string>
+    <string name="verify">verify</string>
+    <string name="lets_finish">Let\'s Finish</string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="welcome_to_main_screen">Welcome to main screen, %1$s!</string>
+</resources>

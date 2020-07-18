@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: '../ktlint.gradle'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+check.dependsOn(ktlint)
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":domain")
+
+    api Libs.room
+    api Libs.roomRx
+    kapt Libs.roomCompiler
+
+    implementation Libs.dagger
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerSupport
+    kapt Libs.daggerCompiler
+    kapt Libs.daggerProcessor
+
+    api Libs.preference
+
+    implementation Libs.sqlcipher
+    implementation Libs.sqlite
+
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockito
+    androidTestImplementation TestLibs.testRunner
+    androidTestImplementation TestLibs.espresso
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#665EFF</color>
+    <color name="colorPrimaryDark">#665EFF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#ea0101</color>
+
+    <!--baseplate colors-->
+
+    <color name="very_light_grey">#bababa</color>
+    <color name="blue_grey">#8e8e93</color>
+    <color name="weird_green">#4cd964</color>
+    <color name="robin_s_egg">#5ac8fa</color>
+    <color name="light_blue_grey">#d1d1d6</color>
+    <color name="tangerine">#ff9500</color>
+    <color name="deep_sky_blue">#007aff</color>
+    <color name="light_blue_grey2">#c7c7cc</color>
+    <color name="warm_blue">#5856d6</color>
+    <color name="reddish_pink">#ff2d55</color>
+    <color name="pale_lilac">#e5e5ea</color>
+    <color name="marigold">#ffcc00</color>
+    <color name="pale_grey">#efeff4</color>
+    <color name="orangey_red">#ff3b30</color>
+    <color name="light_slate_gray">#78849E</color>
+    <color name="light_slate_gray_50">#8078849E</color>
+    <color name="valhalla">#2A2E43</color>
+
+</resources>
