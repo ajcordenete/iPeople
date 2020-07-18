@@ -10,7 +10,6 @@ import com.aljon.ipeople.features.auth.register.RegisterActivity
 import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.ninjaTap
 import com.aljon.module.common.toast
-import com.aljon.module.common.widget.CustomPasswordTransformation
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
@@ -27,16 +26,12 @@ class LoginActivity : BaseViewModelActivity<ActivityLoginBinding, LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUpViews(savedInstanceState)
+        setUpViews()
         setUpViewModels()
         setupToolbar()
     }
 
-    private fun setUpViews(savedInstanceState: Bundle?) {
-        binding.etPassword.apply {
-            transformationMethod = CustomPasswordTransformation()
-        }
-
+    private fun setUpViews() {
         disposables.add(binding.btnContinue.ninjaTap {
             login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         })
