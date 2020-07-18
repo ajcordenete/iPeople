@@ -36,7 +36,7 @@
             android:gravity="start|center"
             android:text="@string/get_started"
             android:textColor="@color/black"
-            android:textSize="34sp"
+            android:textSize="@dimen/font_larger"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -45,7 +45,7 @@
             style="@style/BaseInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:hint="@string/name"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
@@ -61,7 +61,7 @@
                 android:maxLines="1"
                 android:nextFocusDown="@id/etEmail"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="@dimen/font_normal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +69,7 @@
             style="@style/BaseInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:hint="@string/email_address"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
@@ -86,7 +86,7 @@
                 android:maxLines="1"
                 android:nextFocusDown="@id/etPassword"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="@dimen/font_normal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -94,7 +94,7 @@
             style="@style/BaseInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:hint="@string/password"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
@@ -114,14 +114,14 @@
                 android:maxLines="1"
                 android:nextFocusDown="@id/etCountry"
                 android:textColor="@color/light_slate_gray"
-                android:textSize="17sp" />
+                android:textSize="@dimen/font_normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/etCountry"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/spacing_large"
             android:gravity="left"
             android:letterSpacing=".5"
             android:inputType="textAutoComplete"

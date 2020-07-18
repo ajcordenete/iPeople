@@ -78,6 +78,32 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
                 openMainActivity()
             }
 
+            is RegisterState.FieldsAreEmpty -> {
+                binding.etNameLayout.error = getString(R.string.name_must_not_be_empty)
+                binding.etEmailLayout.error = getString(R.string.email_must_not_be_empty)
+                binding.etPasswordLayout.error = getString(R.string.password_must_not_be_empty)
+            }
+
+            is RegisterState.NameIsEmpty -> {
+                binding.etNameLayout.error = getString(R.string.name_must_not_be_empty)
+            }
+
+            is RegisterState.EmailIsEmpty -> {
+                binding.etEmailLayout.error = getString(R.string.email_must_not_be_empty)
+            }
+
+            is RegisterState.PasswordIsEmpty -> {
+                binding.etPasswordLayout.error = getString(R.string.password_must_not_be_empty)
+            }
+
+            is RegisterState.EmailIsInvalid -> {
+                binding.etEmailLayout.error = getString(R.string.invalid_email)
+            }
+
+            is RegisterState.PasswordIsInvalid -> {
+                binding.etPasswordLayout.error = getString(R.string.password_must_contain_minimum_characters)
+            }
+
             is RegisterState.Error -> {
                 toast(getString(R.string.generic_error))
             }
@@ -98,12 +124,20 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
     }
 
     private fun register() {
+        clearErrors()
+
         viewModel.register(
             email = binding.etEmail.text.toString(),
             password = binding.etPassword.text.toString(),
             name = binding.etName.text.toString(),
             country = binding.etCountry.selectedItem.toString()
         )
+    }
+
+    private fun clearErrors() {
+        binding.etNameLayout.error = null
+        binding.etEmailLayout.error = null
+        binding.etPasswordLayout.error = null
     }
 
     private fun openMainActivity() {

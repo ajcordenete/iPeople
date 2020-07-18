@@ -2,7 +2,7 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="full_name">Full name</string>
-    <string name="password_must_contain_minimum_characters">Your password must contain 8 characters</string>
+    <string name="password_must_contain_minimum_characters">Your password must contain at least 6 characters</string>
     <string name="password">Password</string>
     <string name="retype_password">Re-type password</string>
     <string name="login_with_facebook">Login with facebook</string>
@@ -39,7 +39,7 @@
     <string name="code_must_not_be_empty">Code must not be empty</string>
     <string name="password_must_not_be_empty">Password must not be empty</string>
     <string name="confirm_password_must_not_be_empty">Confirm Password must not be empty</string>
-    <string name="full_name_must_not_be_empty">Full name must not be empty</string>
+    <string name="name_must_not_be_empty">Name must not be empty</string>
     <string name="password_must_be_more_than_eight">Password must be more than 8 characters!</string>
     <string name="current_password_must_be_more_than_eight">Current password must be more than 8 characters!</string>
     <string name="confirm_password_must_be_more_than_eight">Confirm password must be more than 8 characters!</string>

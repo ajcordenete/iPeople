@@ -8,5 +8,5 @@
     android:fontFamily="@font/inter_regular"
     android:maxLines="1"
     android:textColor="@color/black"
-    android:textSize="17sp"
+    android:textSize="@dimen/font_normal"
     android:text="@string/country"/>
