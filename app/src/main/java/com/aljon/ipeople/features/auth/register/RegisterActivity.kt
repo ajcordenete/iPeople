@@ -9,6 +9,7 @@ import com.aljon.ipeople.base.BaseViewModelActivity
 import com.aljon.ipeople.databinding.ActivityRegisterBinding
 import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.ninjaTap
+import com.aljon.module.common.showOkDialog
 import com.aljon.module.common.toast
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
@@ -67,6 +68,7 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
     private fun handleState(state: RegisterState) {
         when (state) {
             is RegisterState.RegisterSuccessful -> {
+                toast(getString(R.string.signup_success))
                 openMainActivity()
             }
 
@@ -97,7 +99,11 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
             }
 
             is RegisterState.Error -> {
-                toast(getString(R.string.generic_error))
+                showOkDialog(
+                    getString(R.string.error),
+                    getString(R.string.generic_error),
+                    R.string.ok
+                )
             }
         }
     }

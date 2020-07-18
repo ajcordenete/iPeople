@@ -9,7 +9,7 @@ import com.aljon.ipeople.databinding.ActivityLoginBinding
 import com.aljon.ipeople.features.auth.register.RegisterActivity
 import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.ninjaTap
-import com.aljon.module.common.toast
+import com.aljon.module.common.showOkDialog
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
@@ -89,7 +89,11 @@ class LoginActivity : BaseViewModelActivity<ActivityLoginBinding, LoginViewModel
             }
 
             is LoginState.Error -> {
-                toast(getString(R.string.invalid_credentials))
+                showOkDialog(
+                    getString(R.string.error),
+                    getString(R.string.invalid_credentials),
+                    R.string.ok
+                )
             }
         }
     }

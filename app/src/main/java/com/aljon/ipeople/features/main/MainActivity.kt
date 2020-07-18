@@ -9,7 +9,6 @@ import com.aljon.ipeople.base.BaseViewModelActivity
 import com.aljon.ipeople.databinding.ActivityMainBinding
 import com.aljon.ipeople.features.auth.landing.LandingActivity
 import com.aljon.module.common.ninjaTap
-import com.aljon.module.common.toast
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
@@ -77,9 +76,6 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding, MainViewModel>()
             is MainState.LogoutSuccess -> {
                 LandingActivity.openActivity(this)
                 finishAffinity()
-            }
-            is MainState.ShowProgressLoading -> {
-                toast(getString(R.string.sending_request))
             }
         }
     }
