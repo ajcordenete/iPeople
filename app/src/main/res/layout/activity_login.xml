@@ -79,8 +79,9 @@
                 android:maxLines="1"
                 android:nextFocusDown="@id/etPassword"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                tools:text="test@test.com" />
+                android:textSize="@dimen/font_normal"/>
+
+            <requestFocus />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,10 +109,7 @@
                 android:letterSpacing=".5"
                 android:maxLines="1"
                 android:nextFocusDown="@id/btnContinue"
-                android:textColor="@color/light_slate_gray"
-                android:textSize="17sp" />
-
-            <requestFocus />
+                android:textSize="@dimen/font_normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,9 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:alpha=".3"
             android:background="@drawable/btn_rounded_gradiant"
-            android:enabled="false"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:text="@string/continue_string"
