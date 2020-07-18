@@ -3,152 +3,206 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/leftGuideLine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".05" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/rightGuideLine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".95" />
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/include_toolbar_center_no_statusbar" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/inter_bold"
-            android:gravity="start|center"
-            android:text="@string/get_started"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_larger"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etNameLayout"
-            style="@style/BaseInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/name"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/title">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
-                style="@style/BaseEditText"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:imeOptions="actionNext"
-                android:maxLines="1"
-                android:nextFocusDown="@id/etEmail"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"/>
+                android:padding="@dimen/spacing_large">
 
-            <requestFocus/>
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/leftGuideLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".05" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etEmailLayout"
-            style="@style/BaseInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/email_address"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/etNameLayout">
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/rightGuideLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".95" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                style="@style/BaseEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:nextFocusDown="@id/etPassword"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/spacing_huge"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="start|center"
+                    android:text="@string/get_started"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_huge"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etPasswordLayout"
-            style="@style/BaseInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/password"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/etEmailLayout"
-            app:passwordToggleDrawable="@drawable/password_toggle"
-            app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etNameLayout"
+                    style="@style/BaseInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/title">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                style="@style/BaseEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:letterSpacing=".5"
-                android:maxLines="1"
-                android:nextFocusDown="@id/etCountry"
-                android:textColor="@color/light_slate_gray"
-                android:textSize="@dimen/font_normal" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etName"
+                        style="@style/BaseEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:imeOptions="actionNext"
+                        android:maxLines="1"
+                        android:hint="@string/name"
+                        android:nextFocusDown="@id/etEmail"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        android:drawableStart="@drawable/ic_person"
+                        android:drawablePadding="@dimen/spacing_normal"/>
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/etCountry"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:gravity="left"
-            android:letterSpacing=".5"
-            android:inputType="textAutoComplete"
-            android:fontFamily="@font/inter_regular"
-            app:layout_constraintStart_toEndOf="@id/leftGuideLine"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout"
-            tools:listitem="@layout/item_country" />
+                    <requestFocus/>
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etEmailLayout"
+                    style="@style/BaseInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/etNameLayout">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnContinue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/btn_rounded_gradiant"
-            android:fontFamily="@font/inter_medium"
-            android:gravity="center"
-            android:text="@string/continue_string"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/etCountry" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        style="@style/BaseEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:hint="@string/email_address"
+                        android:nextFocusDown="@id/etPassword"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        android:drawableStart="@drawable/ic_email"
+                        android:drawablePadding="@dimen/spacing_normal"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etPasswordLayout"
+                    style="@style/BaseInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/etEmailLayout"
+                    app:passwordToggleDrawable="@drawable/password_toggle"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        style="@style/BaseEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:hint="@string/password"
+                        android:nextFocusDown="@id/etCountry"
+                        android:textSize="@dimen/font_normal"
+                        android:drawableStart="@drawable/ic_password"
+                        android:drawablePadding="@dimen/spacing_normal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/countryHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="@string/country"
+                    android:textColor="@color/light_slate_gray_50"
+                    android:textSize="@dimen/font_normal"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@id/etPasswordLayout"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/etCountry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:gravity="left"
+                    android:letterSpacing=".5"
+                    android:inputType="textAutoComplete"
+                    android:fontFamily="@font/inter_regular"
+                    app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/countryHint"
+                    tools:listitem="@layout/item_country"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnContinue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/btn_rounded_gradiant"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/etCountry" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_huge"
+                    android:fontFamily="@font/inter_bolditalic"
+                    android:gravity="start|center"
+                    android:text="@string/already_have_an_account"
+                    android:textSize="@dimen/font_normal"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/btnContinue" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="start|center"
+                    android:text="@string/login"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_large"
+                    app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+                    app:layout_constraintTop_toBottomOf="@+id/signUpLabel" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
 </layout>

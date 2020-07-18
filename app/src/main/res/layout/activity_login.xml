@@ -137,7 +137,7 @@
             android:background="@drawable/btn_rounded_gradiant"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
-            android:text="@string/continue_string"
+            android:text="@string/login"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="16sp"

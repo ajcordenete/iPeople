@@ -10,7 +10,6 @@ import com.aljon.ipeople.databinding.ActivityRegisterBinding
 import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.ninjaTap
 import com.aljon.module.common.toast
-import com.aljon.module.common.widget.CustomPasswordTransformation
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import java.util.*
@@ -33,15 +32,8 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupToolbar()
-
         setupViewModels()
         setupViews()
-    }
-
-    private fun setupToolbar() {
-        enableToolbarHomeIndicator()
-        setToolbarNoTitle()
     }
 
     private fun setupViewModels() {
@@ -58,12 +50,12 @@ class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, Register
     }
 
     private fun setupViews() {
-        binding.etPassword.apply {
-            transformationMethod = CustomPasswordTransformation()
-        }
-
         disposables.add(binding.btnContinue.ninjaTap {
             register()
+        })
+
+        disposables.add(binding.login.ninjaTap {
+            finish()
         })
 
         val countryAdapter = ArrayAdapter(this,
