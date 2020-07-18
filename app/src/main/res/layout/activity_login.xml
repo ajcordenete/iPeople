@@ -107,7 +107,7 @@
                 android:inputType="textPassword"
                 android:letterSpacing=".5"
                 android:maxLines="1"
-                android:nextFocusDown="@id/etMobile"
+                android:nextFocusDown="@id/btnContinue"
                 android:textColor="@color/light_slate_gray"
                 android:textSize="17sp" />
 

@@ -62,8 +62,7 @@
                 android:maxLines="1"
                 android:nextFocusDown="@id/etPassword"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                tools:text="francis.gwapo@appetiser.com.au" />
+                android:textSize="17sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,58 +88,33 @@
                 android:inputType="textPassword"
                 android:letterSpacing=".5"
                 android:maxLines="1"
-                android:nextFocusDown="@id/etMobile"
+                android:nextFocusDown="@id/etCountry"
                 android:textColor="@color/light_slate_gray"
                 android:textSize="17sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etMobileLayout"
-            style="@style/BaseInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:hint="@string/mobile"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toEndOf="@+id/etCountryLayout"
-            app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etMobile"
-                style="@style/BaseEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:maxLines="1"
-                android:nextFocusDown="@id/etMobile"
-                android:textColor="@color/light_slate_gray"
-                android:textSize="17sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCountryLayout"
             style="@style/BaseInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:hintEnabled="true"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toTopOf="@+id/etMobileLayout">
+            android:layout_marginTop="28dp"
+            android:hint="@string/country"
+            app:layout_constraintStart_toEndOf="@id/leftGuideLine"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/countryHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/country"
-            android:textColor="@color/light_slate_gray"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/etCountryLayout"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toTopOf="@+id/etCountryLayout"
-            app:layout_constraintVertical_bias="0.0" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCountry"
+                style="@style/BaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:nextFocusDown="@id/btnContinue"
+                android:textColor="@color/light_slate_gray"
+                android:textSize="17sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -148,9 +122,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:alpha=".3"
             android:background="@drawable/btn_rounded_gradiant"
-            android:enabled="false"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:text="@string/continue_string"
@@ -159,7 +131,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/etMobileLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/etCountryLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

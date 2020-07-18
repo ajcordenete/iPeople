@@ -22,12 +22,7 @@ class RegisterViewModel @Inject constructor(
 
     val state: Observable<RegisterState> = _state
 
-    override fun isFirstTimeUiCreate(bundle: Bundle?) {
-        email = bundle?.getString(RegisterActivity.KEY_EMAIL, "")!!
-        disposables.add(Observable.just(email)
-            .observeOn(schedulers.ui())
-            .subscribeBy(onNext = { _state.onNext(RegisterState.GetEmail(it)) }))
-    }
+    override fun isFirstTimeUiCreate(bundle: Bundle?) {}
 
     fun register(password: String, mobileNumber: String) {
         disposables.add(repository.register(

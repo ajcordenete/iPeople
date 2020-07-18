@@ -11,6 +11,7 @@ import com.aljon.ipeople.databinding.ActivityLoginBinding
 import com.aljon.ipeople.ext.disabledWithAlpha
 import com.aljon.ipeople.ext.enableWhen
 import com.aljon.ipeople.ext.enabledWithAlpha
+import com.aljon.ipeople.features.auth.register.RegisterActivity
 import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.NINJA_TAP_THROTTLE_TIME
 import com.aljon.module.common.ninjaTap
@@ -69,6 +70,10 @@ class LoginActivity : BaseViewModelActivity<ActivityLoginBinding, LoginViewModel
 
         disposables.add(binding.btnContinue.ninjaTap {
             viewModel.login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+        })
+
+        disposables.add(binding.signUp.ninjaTap {
+            RegisterActivity.openActivity(this)
         })
     }
 
