@@ -13,9 +13,7 @@
         android:id="@+id/itemClickable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/spacing_large"
         android:paddingTop="@dimen/spacing_normal"
-        android:paddingRight="@dimen/spacing_normal"
         android:paddingBottom="@dimen/spacing_normal"
         android:clickable="true"
         >

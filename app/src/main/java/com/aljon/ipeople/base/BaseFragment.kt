@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.aljon.ipeople.R
 import com.aljon.ipeople.utils.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -28,6 +31,8 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     val disposables: CompositeDisposable = CompositeDisposable()
 
+    protected var toolbar: Toolbar? = null
+
     @CallSuper
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(
@@ -42,6 +47,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbarAndStatusBar()
     }
 
     override fun onDestroyView() {
@@ -68,5 +74,16 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
      */
     protected open fun canBack(): Boolean {
         return false
+    }
+
+    private fun setupToolbarAndStatusBar() {
+        toolbar = view?.findViewById(R.id.toolbarView)
+        if (toolbar != null) {
+            toolbar = view?.findViewById(R.id.toolbarView)
+            (activity as AppCompatActivity).setSupportActionBar(toolbar)
+            if (canBack()) {
+                (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
+        }
     }
 }

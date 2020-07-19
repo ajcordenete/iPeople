@@ -32,7 +32,8 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
 
     private fun setupToolbar() {
         (activity as MainActivity)
-            .setToolbarTitle(getString(R.string.application_name))
+            // .setToolbarTitle(getString(R.string.application_name))
+            .setToolbarTitle("Contacts Cash")
     }
 
     private fun setUpViews() {
