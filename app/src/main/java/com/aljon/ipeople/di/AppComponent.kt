@@ -11,7 +11,6 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 import com.aljon.module.data.mapper.MapperModule
 import com.aljon.module.local.DatabaseModule
-import com.aljon.module.network.ApiServiceModule
 
 @Singleton
 @Component(
@@ -22,7 +21,6 @@ import com.aljon.module.network.ApiServiceModule
             DatabaseModule::class,
             NetworkModule::class,
             RepositoryModule::class,
-            ApiServiceModule::class,
             ActivityBuilder::class,
             SchedulerModule::class
         ]

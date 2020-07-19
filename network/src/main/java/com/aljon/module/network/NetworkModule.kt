@@ -57,11 +57,16 @@ class NetworkModule {
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(String.format(ENDPOINT_FORMAT, BuildConfig.BASE_URL, API, VERSION))
+            .baseUrl(BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun providesApiServices(retrofit: Retrofit): ApiServices =
+        retrofit.create(ApiServices::class.java)
 }
