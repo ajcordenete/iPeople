@@ -1,6 +1,9 @@
 package com.aljon.ipeople.features.person.list
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -27,6 +30,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
         setupToolbar()
         setUpViews()
         setUpViewModel()
+        setHasOptionsMenu(true)
     }
 
     private fun setupToolbar() {
@@ -82,6 +86,21 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
             is PersonListState.ShowFetchError -> {
                 activity?.toast(getString(R.string.generic_error))
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.logout, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                return true
+            }
+
+            else -> false
         }
     }
 }
