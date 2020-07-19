@@ -35,7 +35,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
         setUpViews()
         setUpViewModel()
         setHasOptionsMenu(true)
-        viewModel.getSession()
+        viewModel.getPersons()
     }
 
     private fun setupToolbar() {
@@ -81,17 +81,19 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
                     it.size.toString()
                 )
             })
+
+        viewModel
+            .name
+            .observe(this, Observer { name ->
+                binding.title.text = getString(
+                    R.string.welcome,
+                    name
+                )
+            })
     }
 
     private fun handleState(state: PersonListState) {
         when (state) {
-            is PersonListState.GetName -> {
-                binding.title.text = getString(
-                    R.string.welcome,
-                    state.name
-                )
-            }
-
             is PersonListState.ShowLoading -> {
                 binding.loading.visible()
             }

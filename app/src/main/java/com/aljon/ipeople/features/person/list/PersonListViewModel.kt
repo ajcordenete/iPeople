@@ -26,11 +26,14 @@ class PersonListViewModel @Inject constructor(
     private val _persons = MutableLiveData<List<DisplayablePerson>>()
     val persons: LiveData<List<DisplayablePerson>> get() = _persons
 
+    private val _name = MutableLiveData<String>()
+    val name: LiveData<String> get() = _name
+
     override fun isFirstTimeUiCreate(bundle: Bundle?) {
-        getPersons()
+        getSession()
     }
 
-    private fun getPersons() {
+    fun getPersons() {
         personRepository
             .getPersons()
             .subscribeOn(schedulers.io())
@@ -55,7 +58,7 @@ class PersonListViewModel @Inject constructor(
             .apply { disposables.add(this) }
     }
 
-    fun getSession() {
+    private fun getSession() {
         authRepository
             .getUserSession()
             .subscribeOn(schedulers.io())
@@ -63,7 +66,7 @@ class PersonListViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = { session ->
                     if (session.name.orEmpty().isNotEmpty()) {
-                        _state.onNext(PersonListState.GetName(session.name.orEmpty()))
+                        _name.value = session.name
                     }
                 },
                 onError = {

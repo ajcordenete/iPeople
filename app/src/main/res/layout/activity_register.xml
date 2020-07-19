@@ -64,6 +64,7 @@
                         android:imeOptions="actionNext"
                         android:maxLines="1"
                         android:hint="@string/name"
+                        android:inputType="textEmailAddress"
                         android:nextFocusDown="@id/etEmail"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_normal"
