@@ -18,13 +18,41 @@
             android:id="@+id/loading"
             layout="@layout/include_progressbar" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/spacing_large"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_title_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/contactsCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_light_beta"
+            android:gravity="start|center"
+            android:textSize="@dimen/font_normal"
+            android:paddingStart="@dimen/spacing_large"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/personList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingStart="@dimen/spacing_large"
             android:paddingEnd="@dimen/spacing_large"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_marginTop="@dimen/spacing_large"
+            app:layout_constraintTop_toBottomOf="@+id/contactsCount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_person" />

@@ -36,7 +36,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
     }
 
     private fun setupToolbar() {
-        setToolbarTitle(getString(R.string.application_name))
+        setToolbarNoTitle()
     }
 
     private fun setUpViews() {
@@ -72,11 +72,22 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
             .persons
             .observe(this, Observer {
                 personAdapter.updateList(it)
+                binding.contactsCount.text = getString(
+                    R.string.you_have_contacts,
+                    it.size.toString()
+                )
             })
     }
 
     private fun handleState(state: PersonListState) {
         when (state) {
+            is PersonListState.GetName -> {
+                binding.title.text = getString(
+                    R.string.welcome,
+                    state.name
+                )
+            }
+
             is PersonListState.ShowLoading -> {
                 binding.loading.visible()
             }
