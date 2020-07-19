@@ -1,6 +1,7 @@
 package com.aljon.ipeople.features.person
 
 import android.os.Parcelable
+import com.aljon.ipeople.utils.Constants
 import com.aljon.module.domain.features.person.models.Person
 import kotlinx.android.parcel.Parcelize
 
@@ -12,9 +13,10 @@ data class DisplayablePerson(
     val username: String? = "",
     val phone: String? = "",
     val address: String? = "",
+    val zip: String? = "",
     val companyName: String? = "",
-    val latitude: Double? = 0.0,
-    val longitude: Double? = 0.0
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 ) : Parcelable {
     companion object {
 
@@ -26,10 +28,11 @@ data class DisplayablePerson(
                     name = name,
                     username = username,
                     phone = phone,
-                    address = address.city,
+                    address = String.format(Constants.ADDRESS_FORMAT, address.suite, address.street, address.city),
+                    zip = address.zip,
                     companyName = company.name,
-                    latitude = address.geo.latitude,
-                    longitude = address.geo.longitude
+                    latitude = address.geo.lat,
+                    longitude = address.geo.lng
                 )
             }
         }

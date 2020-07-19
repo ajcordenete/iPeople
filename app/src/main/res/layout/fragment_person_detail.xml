@@ -69,7 +69,41 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_marginStart="@dimen/spacing_large"
+                    android:ellipsize="end"
+                    android:text="@{ item.address }"
+                    android:gravity="start"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_small"
+                    tools:text="22nd Baker Street, Longdon, England"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/zip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:layout_marginStart="@dimen/spacing_large"
+                    android:text="@{ item.zip }"
+                    android:fontFamily="@font/inter_light_beta"
+                    android:textSize="@dimen/font_small"
+                    tools:text="4102-1020"/>
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:map="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 

@@ -136,8 +136,8 @@ dependencies {
     implementation Libs.navigationFragmentKtx
     implementation Libs.navigationFragmentUI
 
-    //circle image view
-    implementation Libs.circleImageView
+    //Google Maps
+    implementation Libs.playServicesMaps
 
     // Testing
     testImplementation TestLibs.junit
