@@ -1,3 +1,9 @@
 package com.aljon.ipeople.features.person.list
 
-class PersonListViewModel
+import android.os.Bundle
+import com.aljon.ipeople.base.BaseViewModel
+
+class PersonListViewModel : BaseViewModel() {
+
+    override fun isFirstTimeUiCreate(bundle: Bundle?) {}
+}
