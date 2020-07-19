@@ -1,7 +1,10 @@
 package com.aljon.ipeople.features.person
 
+import android.os.Parcelable
 import com.aljon.module.domain.features.person.models.Person
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class DisplayablePerson(
     val id: String? = "",
     val email: String? = "",
@@ -12,7 +15,7 @@ data class DisplayablePerson(
     val companyName: String? = "",
     val latitude: Double? = 0.0,
     val longitude: Double? = 0.0
-) {
+) : Parcelable {
     companion object {
 
         fun fromDomain(person: Person): DisplayablePerson {

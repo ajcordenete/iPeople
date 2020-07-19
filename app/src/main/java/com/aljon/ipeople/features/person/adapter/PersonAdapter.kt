@@ -1,4 +1,4 @@
-package com.aljon.ipeople.features.person
+package com.aljon.ipeople.features.person.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseRecyclerViewAdapter
 import com.aljon.ipeople.base.ViewHolder
 import com.aljon.ipeople.databinding.ItemPersonBinding
+import com.aljon.ipeople.features.person.DisplayablePerson
 
 class PersonAdapter(private var list: List<DisplayablePerson>) : BaseRecyclerViewAdapter<ItemPersonBinding, DisplayablePerson>() {
 

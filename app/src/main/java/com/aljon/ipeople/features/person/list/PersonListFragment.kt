@@ -11,7 +11,7 @@ import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseViewModelFragment
 import com.aljon.ipeople.databinding.FragmentPersonListBinding
 import com.aljon.ipeople.features.auth.login.LoginActivity
-import com.aljon.ipeople.features.person.PersonAdapter
+import com.aljon.ipeople.features.person.adapter.PersonAdapter
 import com.aljon.module.common.gone
 import com.aljon.module.common.showAlertDialog
 import com.aljon.module.common.toast
