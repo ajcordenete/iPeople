@@ -4,6 +4,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'io.fabric'
 apply from: '../ktlint.gradle'
 apply from: '../secret.gradle'
@@ -113,6 +114,12 @@ dependencies {
 
     implementation project(':data')
 
+    implementation Libs.kotlinStdlb
+    implementation Libs.appCompat
+    implementation Libs.supportDesign
+    implementation Libs.constraintLayout
+    implementation Libs.coreKTX
+
     kapt Libs.daggerCompiler
     kapt Libs.daggerProcessor
 
@@ -124,6 +131,13 @@ dependencies {
 
     // Crashlytics
     implementation Libs.crashlytics
+
+    // Navigation Component
+    implementation Libs.navigationFragmentKtx
+    implementation Libs.navigationFragmentUI
+
+    //circle image view
+    implementation Libs.circleImageView
 
     // Testing
     testImplementation TestLibs.junit

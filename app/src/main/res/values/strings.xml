@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="application_name">Ipeople</string>
+    <string name="application_name">iPeople</string>
 
     <string name="app_description">Appetiser makes some pretty snazzy apps that’ll make you hungry</string>
     <string name="verify_number">Verify Number</string>
