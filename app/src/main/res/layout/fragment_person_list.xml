@@ -16,7 +16,8 @@
 
         <include
             android:id="@+id/loading"
-            layout="@layout/include_progressbar" />
+            layout="@layout/include_progressbar"
+            android:visibility="gone"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"

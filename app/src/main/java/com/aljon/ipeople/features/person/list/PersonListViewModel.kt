@@ -28,7 +28,6 @@ class PersonListViewModel @Inject constructor(
 
     override fun isFirstTimeUiCreate(bundle: Bundle?) {
         getPersons()
-        getSession()
     }
 
     private fun getPersons() {
@@ -56,7 +55,7 @@ class PersonListViewModel @Inject constructor(
             .apply { disposables.add(this) }
     }
 
-    private fun getSession() {
+    fun getSession() {
         authRepository
             .getUserSession()
             .subscribeOn(schedulers.io())

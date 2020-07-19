@@ -6,11 +6,13 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseViewModelFragment
 import com.aljon.ipeople.databinding.FragmentPersonListBinding
 import com.aljon.ipeople.features.auth.login.LoginActivity
+import com.aljon.ipeople.features.person.DisplayablePerson
 import com.aljon.ipeople.features.person.adapter.PersonAdapter
 import com.aljon.module.common.gone
 import com.aljon.module.common.showAlertDialog
@@ -33,6 +35,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
         setUpViews()
         setUpViewModel()
         setHasOptionsMenu(true)
+        viewModel.getSession()
     }
 
     private fun setupToolbar() {
@@ -43,6 +46,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
         personAdapter
             .itemClickListener
             .subscribe { person ->
+                navigateToPersonDetail(person)
             }
             .apply { disposables.add(this) }
 
@@ -130,5 +134,13 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
             R.string.logout,
             viewModel::logout
         )
+    }
+
+    private fun navigateToPersonDetail(person: DisplayablePerson) {
+        findNavController()
+            .navigate(
+                PersonListFragmentDirections
+                    .actionPersonListFragmentToPersonDetailFragment(person)
+            )
     }
 }
