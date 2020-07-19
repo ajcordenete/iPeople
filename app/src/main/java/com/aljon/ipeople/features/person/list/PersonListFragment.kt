@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseViewModelFragment
 import com.aljon.ipeople.databinding.FragmentPersonListBinding
-import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.ipeople.features.person.PersonAdapter
 import com.aljon.module.common.gone
 import com.aljon.module.common.toast
@@ -31,9 +30,7 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
     }
 
     private fun setupToolbar() {
-        (activity as MainActivity)
-            // .setToolbarTitle(getString(R.string.application_name))
-            .setToolbarTitle("Contacts Cash")
+        setToolbarTitle(getString(R.string.application_name))
     }
 
     private fun setUpViews() {

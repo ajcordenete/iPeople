@@ -11,7 +11,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/include_toolbar_center_no_statusbar"
+            layout="@layout/include_toolbar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <include

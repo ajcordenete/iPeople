@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -85,5 +86,20 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
                 (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
             }
         }
+    }
+
+    fun setToolbarTitle(res: String) {
+        val toolbarTitle = toolbar?.findViewById<TextView>(R.id.toolbarTitle)
+
+        if (toolbarTitle != null) {
+            toolbarTitle.text = res
+            (activity as AppCompatActivity).supportActionBar?.title = null
+        } else {
+            (activity as AppCompatActivity).supportActionBar?.title = null
+        }
+    }
+
+    fun setToolbarNoTitle() {
+        setToolbarTitle("")
     }
 }
