@@ -3,8 +3,10 @@ package com.aljon.ipeople.ext
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.databinding.BindingAdapter
 import com.aljon.ipeople.GlideApp
 import com.aljon.ipeople.R
+import com.aljon.ipeople.utils.Constants.RANDOM_AVATAR_URL
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -78,4 +80,11 @@ fun ImageView.loadDrawable(@DrawableRes resId: Int?) {
                 .dontAnimate()
                 .into(this)
     }
+}
+
+@BindingAdapter("avatar")
+fun ImageView.setAvatar(avatarID: String?) {
+    GlideApp.with(context)
+        .load(RANDOM_AVATAR_URL + avatarID)
+        .into(this)
 }

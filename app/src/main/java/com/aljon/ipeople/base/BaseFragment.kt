@@ -10,11 +10,16 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.aljon.ipeople.utils.schedulers.BaseSchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
 abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     lateinit var binding: B
+
+    @Inject
+    lateinit var scheduler: BaseSchedulerProvider
 
     @LayoutRes
     abstract fun getLayoutId(): Int

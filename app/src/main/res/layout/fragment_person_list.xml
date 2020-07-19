@@ -14,7 +14,9 @@
             layout="@layout/include_toolbar_center_no_statusbar"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <include layout="@layout/include_progressbar" />
+        <include
+            android:id="@+id/loading"
+            layout="@layout/include_progressbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/personList"
