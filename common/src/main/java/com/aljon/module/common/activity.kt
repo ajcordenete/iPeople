@@ -8,6 +8,7 @@ import android.view.View
 import android.view.Window.ID_ANDROID_CONTENT
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.aljon.baseplate.common.R
 import java.io.File
 import java.io.IOException
 
@@ -87,4 +88,27 @@ fun Activity.isKeyboardOpen(): Boolean {
 
 fun Activity.isKeyboardClosed(): Boolean {
     return !this.isKeyboardOpen()
+}
+
+fun Activity.showAlertDialog(
+    dialogTitle: Int,
+    dialogText: Int,
+    actionPositiveText: Int,
+    actionPositive: () -> Unit,
+    actionNegativeText: Int = R.string.cancel,
+    actionNegative: () -> Unit = {}
+) {
+    AlertDialog.Builder(this)
+        .setTitle(dialogTitle)
+        .setMessage(dialogText)
+        .setCancelable(true)
+        .setNegativeButton(R.string.cancel, null)
+        .setPositiveButton(actionPositiveText) { _, _ ->
+            actionPositive()
+        }
+        .setNegativeButton(actionNegativeText) { _, _ ->
+            actionNegative()
+        }
+        .create()
+        .show()
 }

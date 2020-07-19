@@ -59,5 +59,6 @@
     <string name="error">Error</string>
     <string name="ok">Ok</string>
     <string name="success">Success</string>
+    <string name="cancel">Cancel</string>
     <string name="sending_request">Sending request…</string>
 </resources>

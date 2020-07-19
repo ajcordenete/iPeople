@@ -5,14 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aljon.ipeople.base.BaseViewModel
 import com.aljon.ipeople.features.person.DisplayablePerson
+import com.aljon.module.data.features.auth.AuthRepository
 import com.aljon.module.data.features.person.PersonRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.PublishSubject
+import timber.log.Timber
 import javax.inject.Inject
 
 class PersonListViewModel @Inject constructor(
-    private val personRepository: PersonRepository
+    private val personRepository: PersonRepository,
+    private val authRepository: AuthRepository
 ) : BaseViewModel() {
 
     private val _state by lazy {
@@ -25,6 +28,7 @@ class PersonListViewModel @Inject constructor(
 
     override fun isFirstTimeUiCreate(bundle: Bundle?) {
         getPersons()
+        getSession()
     }
 
     private fun getPersons() {
@@ -47,6 +51,40 @@ class PersonListViewModel @Inject constructor(
                 },
                 onError = {
                     _state.onNext(PersonListState.ShowFetchError)
+                }
+            )
+            .apply { disposables.add(this) }
+    }
+
+    private fun getSession() {
+        authRepository
+            .getUserSession()
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+            .subscribeBy(
+                onSuccess = { session ->
+                    if (session.name.orEmpty().isNotEmpty()) {
+                        _state.onNext(PersonListState.GetName(session.name.orEmpty()))
+                    }
+                },
+                onError = {
+                    Timber.e(it)
+                }
+            )
+            .apply { disposables.add(this) }
+    }
+
+    fun logout() {
+        authRepository
+            .logout()
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+            .subscribeBy(
+                onComplete = {
+                    _state.onNext(PersonListState.LogoutSuccessful)
+                },
+                onError = {
+                    Timber.e(it)
                 }
             )
             .apply { disposables.add(this) }

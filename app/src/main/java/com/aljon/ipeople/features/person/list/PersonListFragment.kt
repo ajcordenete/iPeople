@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseViewModelFragment
 import com.aljon.ipeople.databinding.FragmentPersonListBinding
+import com.aljon.ipeople.features.auth.login.LoginActivity
 import com.aljon.ipeople.features.person.PersonAdapter
 import com.aljon.module.common.gone
+import com.aljon.module.common.showAlertDialog
 import com.aljon.module.common.toast
 import com.aljon.module.common.visible
 import io.reactivex.rxkotlin.subscribeBy
@@ -86,6 +88,11 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
             is PersonListState.ShowFetchError -> {
                 activity?.toast(getString(R.string.generic_error))
             }
+
+            is PersonListState.LogoutSuccessful -> {
+                LoginActivity.openActivity(requireContext())
+                activity?.finishAffinity()
+            }
         }
     }
 
@@ -97,10 +104,20 @@ class PersonListFragment : BaseViewModelFragment<FragmentPersonListBinding, Pers
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
+                showLogoutDialog()
                 return true
             }
 
             else -> false
         }
+    }
+
+    private fun showLogoutDialog() {
+        (activity)?.showAlertDialog(
+            R.string.logout,
+            R.string.logout_message,
+            R.string.logout,
+            viewModel::logout
+        )
     }
 }

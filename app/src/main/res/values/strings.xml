@@ -26,4 +26,5 @@
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="welcome_to_main_screen">Welcome to main screen, %1$s!</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
 </resources>
