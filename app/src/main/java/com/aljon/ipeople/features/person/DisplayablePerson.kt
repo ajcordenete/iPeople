@@ -29,7 +29,7 @@ data class DisplayablePerson(
                     username = username,
                     phone = phone,
                     address = String.format(Constants.ADDRESS_FORMAT, address.suite, address.street, address.city),
-                    zip = address.zip,
+                    zip = address.zipcode,
                     companyName = company.name,
                     latitude = address.geo.lat,
                     longitude = address.geo.lng

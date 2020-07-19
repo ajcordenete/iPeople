@@ -48,6 +48,7 @@ class PersonDetailFragment : BaseFragment<FragmentPersonDetailBinding>(), OnMapR
             args.person.latitude,
             args.person.longitude
         )
+
         val markerTitle = String
             .format(
                 Constants.LOCATION_FORMAT,
