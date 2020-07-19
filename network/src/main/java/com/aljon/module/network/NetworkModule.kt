@@ -1,6 +1,8 @@
 package com.aljon.module.network
 
 import com.aljon.baseplate.network.BuildConfig
+import com.aljon.module.network.features.person.PersonRemoteSource
+import com.aljon.module.network.features.person.PersonRemoteSourceImpl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -69,4 +71,10 @@ class NetworkModule {
     @Singleton
     fun providesApiServices(retrofit: Retrofit): ApiServices =
         retrofit.create(ApiServices::class.java)
+
+    @Provides
+    @Singleton
+    fun providesPersonRemoteSource(apiServices: ApiServices): PersonRemoteSource {
+        return PersonRemoteSourceImpl(apiServices)
+    }
 }
