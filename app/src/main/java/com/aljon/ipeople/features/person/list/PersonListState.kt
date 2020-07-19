@@ -1,3 +1,10 @@
 package com.aljon.ipeople.features.person.list
 
-class PersonListState
+sealed class PersonListState {
+
+    object ShowLoading : PersonListState()
+
+    object HideLoading : PersonListState()
+
+    object ShowFetchError : PersonListState()
+}

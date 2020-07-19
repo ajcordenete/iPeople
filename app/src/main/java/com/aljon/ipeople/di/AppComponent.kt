@@ -3,6 +3,7 @@ package com.aljon.ipeople.di
 import android.app.Application
 import com.aljon.ipeople.IpeopleApplication
 import com.aljon.ipeople.di.builders.ActivityBuilder
+import com.aljon.ipeople.di.builders.FragmentBuilder
 import com.aljon.module.local.StorageModule
 import com.aljon.module.network.NetworkModule
 import dagger.BindsInstance
@@ -22,6 +23,7 @@ import com.aljon.module.local.DatabaseModule
             NetworkModule::class,
             RepositoryModule::class,
             ActivityBuilder::class,
+            FragmentBuilder::class,
             SchedulerModule::class
         ]
 )
