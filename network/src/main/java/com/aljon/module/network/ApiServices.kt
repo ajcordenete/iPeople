@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface ApiServices {
 
     @GET("users")
-    fun getPersons(): Single<PersonDTO>
+    fun getPersons(): Single<List<PersonDTO>>
 }

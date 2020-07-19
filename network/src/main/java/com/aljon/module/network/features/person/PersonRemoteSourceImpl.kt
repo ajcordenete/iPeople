@@ -10,9 +10,13 @@ class PersonRemoteSourceImpl @Inject constructor(
     private val apiServices: ApiServices
 ) : PersonRemoteSource {
 
-    override fun getPersons(): Single<Person> {
+    override fun getPersons(): Single<List<Person>> {
         return apiServices
             .getPersons()
-            .map { PersonDTO.toDomain(it) }
+            .map { persons ->
+                persons.map {
+                    PersonDTO.toDomain(it)
+                }
+            }
     }
 }

@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface PersonRemoteSource {
 
-    fun getPersons(): Single<Person>
+    fun getPersons(): Single<List<Person>>
 }
