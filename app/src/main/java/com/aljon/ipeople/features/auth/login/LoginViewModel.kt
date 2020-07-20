@@ -1,7 +1,7 @@
 package com.aljon.ipeople.features.auth.login
 
 import android.os.Bundle
-import android.util.Patterns
+import androidx.core.util.PatternsCompat
 import com.aljon.ipeople.base.BaseViewModel
 import com.aljon.module.data.features.auth.AuthRepository
 import io.reactivex.Observable
@@ -31,9 +31,6 @@ class LoginViewModel @Inject constructor(
             .login(email, password)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
-            .doOnSubscribe {
-                _state.onNext(LoginState.ShowProgressLoading)
-            }
             .subscribeBy(
                 onSuccess = { session ->
                     if (session.id.orEmpty().isNotEmpty()) {
@@ -57,7 +54,7 @@ class LoginViewModel @Inject constructor(
             return false
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
             _state.onNext(LoginState.EmailIsInvalid)
             return false
         }
