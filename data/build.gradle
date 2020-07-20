@@ -62,7 +62,8 @@ dependencies {
     // RxPermissions
     api Libs.runtimePermission
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockito
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
