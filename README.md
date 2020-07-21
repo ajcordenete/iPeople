@@ -2,7 +2,7 @@
 
 # iPeople
 
-Language: Kotlin
+**Language**: Kotlin
 
 A master-detail application that loads users from [JSONPlaceholder API](https://jsonplaceholder.typicode.com/users).
 <br/><br/>
@@ -53,3 +53,5 @@ A master-detail application that loads users from [JSONPlaceholder API](https://
 - Gson - json parsing
 - Google Maps
 - Architecture Components
+- JUnit4
+- Mockito
