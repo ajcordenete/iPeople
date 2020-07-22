@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_normal">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/leftGuideLine"
@@ -22,51 +23,31 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".95" />
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/include_toolbar_center_no_statusbar" />
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:layout_gravity="center"
             android:fontFamily="@font/inter_bold"
-            android:gravity="start|center"
-            android:text="@string/welcome_back"
+            android:gravity="center"
+            android:text="@string/application_name"
             android:textColor="@color/black"
-            android:textSize="34sp"
+            android:textSize="@dimen/font_huge"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/onboardingWelcomeBack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/inter_regular"
-            android:gravity="start|center"
-            android:text="@string/enter_your_credentials"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etEmailLayout"
             style="@style/BaseInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="@string/email_address"
+            android:layout_marginTop="@dimen/spacing_huge"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/onboardingWelcomeBack">
+            app:layout_constraintTop_toBottomOf="@+id/title">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
@@ -77,10 +58,14 @@
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:hint="@string/email_address"
                 android:nextFocusDown="@id/etPassword"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                tools:text="test@test.com" />
+                android:textSize="@dimen/font_normal"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/spacing_normal"/>
+
+            <requestFocus />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:hint="@string/password"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
             app:layout_constraintTop_toBottomOf="@+id/etEmailLayout"
@@ -105,45 +90,54 @@
                 android:fontFamily="@font/inter_regular"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:letterSpacing=".5"
                 android:maxLines="1"
-                android:nextFocusDown="@id/etMobile"
-                android:textColor="@color/light_slate_gray"
-                android:textSize="17sp" />
-
-            <requestFocus />
+                android:hint="@string/password"
+                android:nextFocusDown="@id/btnContinue"
+                android:textSize="@dimen/font_normal"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/spacing_normal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/signUpLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:fontFamily="@font/inter_bolditalic"
+            android:gravity="start|center"
+            android:text="@string/dont_have_an_account"
+            android:textSize="@dimen/font_normal"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
+            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
+            app:layout_constraintTop_toBottomOf="@+id/btnContinue" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/spacing_tiny"
             android:fontFamily="@font/inter_semibold"
             android:gravity="start|center"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/dont_have_an_account"
+            android:text="@string/signup"
+            android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
-            android:textSize="15sp"
+            android:textSize="@dimen/font_large"
             app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/btnContinue" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpLabel" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnContinue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/spacing_huge"
             android:layout_marginBottom="16dp"
-            android:alpha=".3"
             android:background="@drawable/btn_rounded_gradiant"
-            android:enabled="false"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
-            android:text="@string/continue_string"
+            android:text="@string/login"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="16sp"

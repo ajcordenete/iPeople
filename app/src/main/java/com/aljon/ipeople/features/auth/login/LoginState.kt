@@ -1,18 +1,20 @@
 package com.aljon.ipeople.features.auth.login
 
-import com.aljon.module.domain.features.auth.models.Session
-
 sealed class LoginState {
 
-    data class GetEmail(val email: String) : LoginState()
+    object LoginSuccess : LoginState()
 
-    data class LoginSuccess(val user: Session) : LoginState()
+    object FieldsAreEmpty : LoginState()
 
-    data class UserNotVerified(val user: Session) : LoginState()
+    object EmailIsEmpty : LoginState()
+
+    object PasswordIsEmpty : LoginState()
+
+    object EmailIsInvalid : LoginState()
+
+    object PasswordIsInvalid : LoginState()
 
     data class Error(val throwable: Throwable) : LoginState()
-
-    object NoUserFirstAndLastName : LoginState()
 
     object ShowProgressLoading : LoginState()
 

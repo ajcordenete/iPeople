@@ -3,6 +3,7 @@ package com.aljon.ipeople.di
 import android.app.Application
 import com.aljon.ipeople.IpeopleApplication
 import com.aljon.ipeople.di.builders.ActivityBuilder
+import com.aljon.ipeople.di.builders.FragmentBuilder
 import com.aljon.module.local.StorageModule
 import com.aljon.module.network.NetworkModule
 import dagger.BindsInstance
@@ -11,7 +12,6 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 import com.aljon.module.data.mapper.MapperModule
 import com.aljon.module.local.DatabaseModule
-import com.aljon.module.network.ApiServiceModule
 
 @Singleton
 @Component(
@@ -22,8 +22,8 @@ import com.aljon.module.network.ApiServiceModule
             DatabaseModule::class,
             NetworkModule::class,
             RepositoryModule::class,
-            ApiServiceModule::class,
             ActivityBuilder::class,
+            FragmentBuilder::class,
             SchedulerModule::class
         ]
 )

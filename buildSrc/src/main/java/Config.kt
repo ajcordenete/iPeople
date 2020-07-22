@@ -154,6 +154,7 @@ object Libs {
     val navigationFragments = "androidx.navigation:navigation-fragment:$navigationVersion"
     val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     val navigationFragmentUI = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
     // Core-KTX
     val coreKTX = "androidx.core:core-ktx:$coreKtxVersion"
 

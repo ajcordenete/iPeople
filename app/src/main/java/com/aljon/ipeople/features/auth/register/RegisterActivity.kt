@@ -3,58 +3,38 @@ package com.aljon.ipeople.features.auth.register
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import com.aljon.ipeople.R
 import com.aljon.ipeople.base.BaseViewModelActivity
-import com.aljon.ipeople.databinding.ActivityOnboardRegisterStep1Binding
-import com.aljon.ipeople.ext.disabledWithAlpha
-import com.aljon.ipeople.ext.enableWhen
-import com.aljon.ipeople.ext.enabledWithAlpha
-import com.aljon.module.common.NINJA_TAP_THROTTLE_TIME
-import com.aljon.module.common.getNetworkCountryIso
+import com.aljon.ipeople.databinding.ActivityRegisterBinding
+import com.aljon.ipeople.features.main.MainActivity
 import com.aljon.module.common.ninjaTap
+import com.aljon.module.common.showOkDialog
 import com.aljon.module.common.toast
-import com.aljon.module.common.widget.CustomPasswordTransformation
-import com.aljon.module.network.base.response.error.ResponseError
-import com.jakewharton.rxbinding3.widget.textChangeEvents
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
+import java.util.*
+import kotlin.collections.ArrayList
 
-class RegisterActivity : BaseViewModelActivity<ActivityOnboardRegisterStep1Binding, RegisterViewModel>() {
+class RegisterActivity : BaseViewModelActivity<ActivityRegisterBinding, RegisterViewModel>() {
 
     companion object {
-        fun openActivity(context: Context, email: String) {
+        fun openActivity(context: Context) {
             val intent = Intent(context, RegisterActivity::class.java)
-            intent.putExtra(KEY_EMAIL, email)
             context.startActivity(intent)
         }
-
-        const val KEY_EMAIL = "email"
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_onboard_register_step1
+    override fun getLayoutId(): Int = R.layout.activity_register
 
     override fun canBack(): Boolean {
         return true
     }
 
-    private var networkCountryIso = "US"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupToolbar()
-
         setupViewModels()
-        observeInputViews()
-        setupData()
-    }
-
-    private fun setupToolbar() {
-        enableToolbarHomeIndicator()
-        setToolbarNoTitle()
+        setupViews()
     }
 
     private fun setupViewModels() {
@@ -62,25 +42,7 @@ class RegisterActivity : BaseViewModelActivity<ActivityOnboardRegisterStep1Bindi
             .observeOn(scheduler.ui())
             .subscribeBy(
                 onNext = {
-                    when (it) {
-                        is RegisterState.GetEmail -> {
-                            binding.etEmail.apply {
-                                isEnabled = false
-                                setText(it.email)
-                            }
-                        }
-
-                        is RegisterState.Error -> {
-                            // show error message
-                            ResponseError.getError(it.throwable,
-                                ResponseError.ErrorCallback(httpExceptionCallback = {
-                                    toast(it)
-                                }))
-                        }
-                        is RegisterState.ShowProgressLoading -> {
-                            toast("Sending request")
-                        }
-                    }
+                    handleState(it)
                 },
                 onError = {
                     Timber.e("Error $it")
@@ -88,72 +50,96 @@ class RegisterActivity : BaseViewModelActivity<ActivityOnboardRegisterStep1Bindi
             ).apply { disposables.add(this) }
     }
 
-    private fun setupData() {
-        networkCountryIso = getNetworkCountryIso()
-
-        binding.btnContinue.enableWhen(binding.etMobile) {
-            it.isNotEmpty()
-        }
-
-        binding.etMobile.apply {
-            setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                    if (binding.btnContinue.isEnabled) {
-                        register()
-                    }
-                    true
-                } else {
-                    false
-                }
-            }
-        }
-
+    private fun setupViews() {
         disposables.add(binding.btnContinue.ninjaTap {
             register()
         })
+
+        disposables.add(binding.login.ninjaTap {
+            finish()
+        })
+
+        val countryAdapter = ArrayAdapter(this,
+            R.layout.item_country, getCountries())
+
+        this.binding.etCountry.adapter = countryAdapter
+    }
+
+    private fun handleState(state: RegisterState) {
+        when (state) {
+            is RegisterState.RegisterSuccessful -> {
+                toast(getString(R.string.signup_success))
+                openMainActivity()
+            }
+
+            is RegisterState.FieldsAreEmpty -> {
+                binding.etNameLayout.error = getString(R.string.name_must_not_be_empty)
+                binding.etEmailLayout.error = getString(R.string.email_must_not_be_empty)
+                binding.etPasswordLayout.error = getString(R.string.password_must_not_be_empty)
+            }
+
+            is RegisterState.NameIsEmpty -> {
+                binding.etNameLayout.error = getString(R.string.name_must_not_be_empty)
+            }
+
+            is RegisterState.EmailIsEmpty -> {
+                binding.etEmailLayout.error = getString(R.string.email_must_not_be_empty)
+            }
+
+            is RegisterState.PasswordIsEmpty -> {
+                binding.etPasswordLayout.error = getString(R.string.password_must_not_be_empty)
+            }
+
+            is RegisterState.EmailIsInvalid -> {
+                binding.etEmailLayout.error = getString(R.string.invalid_email)
+            }
+
+            is RegisterState.PasswordIsInvalid -> {
+                binding.etPasswordLayout.error = getString(R.string.password_must_contain_minimum_characters)
+            }
+
+            is RegisterState.Error -> {
+                showOkDialog(
+                    getString(R.string.error),
+                    getString(R.string.generic_error),
+                    R.string.ok
+                )
+            }
+        }
+    }
+
+    private fun getCountries(): List<String> {
+        val locales = Locale.getAvailableLocales()
+        val countries = ArrayList<String>()
+        for (locale in locales) {
+            val country: String = locale.getDisplayCountry()
+            if (country.trim().isNotEmpty() && !countries.contains(country)) {
+                countries.add(country)
+            }
+        }
+        countries.sort()
+        return countries
     }
 
     private fun register() {
+        clearErrors()
+
         viewModel.register(
+            email = binding.etEmail.text.toString(),
             password = binding.etPassword.text.toString(),
-            mobileNumber = ""
+            name = binding.etName.text.toString(),
+            country = binding.etCountry.selectedItem.toString()
         )
     }
 
-    private fun observeInputViews() {
-        binding.etPassword.apply {
-            transformationMethod = CustomPasswordTransformation()
-        }
+    private fun clearErrors() {
+        binding.etNameLayout.error = null
+        binding.etEmailLayout.error = null
+        binding.etPasswordLayout.error = null
+    }
 
-        val passwordObservable = binding.etPassword.textChangeEvents()
-            .skipInitialValue()
-            .map { it.text }
-            .map { it.isNotEmpty() && it.length >= 8 }
-
-        val phoneNumberObservable = binding.etMobile.textChangeEvents()
-            .skipInitialValue()
-            .map { it.text }
-            .map { it.isNotEmpty() }
-
-        disposables.add(
-            Observable.combineLatest(
-                passwordObservable,
-                phoneNumberObservable,
-                BiFunction<Boolean, Boolean, Boolean> { passwordCount, phoneNumberCount ->
-                    passwordCount && phoneNumberCount
-                })
-                .debounce(NINJA_TAP_THROTTLE_TIME, TimeUnit.MILLISECONDS)
-                .observeOn(scheduler.ui())
-                .subscribe({
-                    if (it) {
-                        binding.btnContinue.enabledWithAlpha()
-                    } else {
-                        binding.btnContinue.disabledWithAlpha()
-                    }
-                }, {
-                    Timber.e(it)
-                })
-        )
+    private fun openMainActivity() {
+        MainActivity.openActivity(this)
+        finishAffinity()
     }
 }

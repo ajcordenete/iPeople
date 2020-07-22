@@ -1,16 +1,24 @@
 package com.aljon.ipeople.features.auth.register
 
-import com.aljon.module.domain.features.auth.models.Session
-
 sealed class RegisterState {
 
-    data class GetEmail(val email: String) : RegisterState()
+    object RegisterSuccessful : RegisterState()
 
-    data class SaveLoginCredentials(val user: Session) : RegisterState()
+    object FieldsAreEmpty : RegisterState()
 
-    data class Error(val throwable: Throwable) : RegisterState()
+    object NameIsEmpty : RegisterState()
+
+    object EmailIsEmpty : RegisterState()
+
+    object PasswordIsEmpty : RegisterState()
+
+    object EmailIsInvalid : RegisterState()
+
+    object PasswordIsInvalid : RegisterState()
 
     object ShowProgressLoading : RegisterState()
 
     object HideProgressLoading : RegisterState()
+
+    data class Error(val throwable: Throwable) : RegisterState()
 }

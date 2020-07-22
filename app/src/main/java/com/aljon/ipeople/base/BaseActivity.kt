@@ -21,6 +21,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -125,9 +126,11 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), HasSuppo
             val toolbarTitle = toolbar?.findViewById<TextView>(R.id.toolbarTitle)
 
             if (toolbarTitle != null) {
+                Timber.i("existing toolbarTitle")
                 toolbarTitle.text = res
                 supportActionBar?.title = null
             } else {
+                Timber.i("null toolbarTitle")
                 supportActionBar?.title = res
             }
         }
